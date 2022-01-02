@@ -128,6 +128,13 @@ echo "DONE" > $redirectShort
 
 ### VSCodium
 
+if [[ ! -d "~/.config/VSCodium" ]]
+then
+    echo "Creating \"~/.config/VSCodium\" folder..." > $redirectShort
+    mkdir ~/.config/VSCodium
+    echo " DONE" > $redirectShort
+fi
+
 echo -n "Creating product.json file..." > $redirectShort
 echo "{
   \"extensionsGallery\": {
