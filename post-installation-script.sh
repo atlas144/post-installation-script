@@ -64,7 +64,7 @@ then
     echo -n "Flatpak is not installed. Starting installation..." > redirectShort
     apt-get install flatpak > redirectLong
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    echo " DONE\nFlatpak is succesfully installed. Now you must restart the computer." > redirectShort
+    echo " DONE\nFlatpak is succesfully installed. Now you must restart the computer."
     exit 0
 else
     echo "Flatpak is already installed" > redirectShort
