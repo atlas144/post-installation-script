@@ -81,8 +81,7 @@ echo " DONE" > $redirectShort
 
 echo -n "Adding VSCodium repository..." > $redirectShort
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
-    | gpg --dearmor \
-    | dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+    | gpg --dearmor > /usr/share/keyrings/vscodium-archive-keyring.gpg
 echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
     | tee /etc/apt/sources.list.d/vscodium.list > $redirectLong
 echo " DONE" > $redirectShort
@@ -93,7 +92,7 @@ echo -n "Adding Signal repository..." > $redirectShort
 wget -qO - https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > /usr/share/keyrings/signal-desktop-keyring.gpg
 
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
-tee -a /etc/apt/sources.list.d/signal-xenial.list > $redirectLong
+tee /etc/apt/sources.list.d/signal-xenial.list > $redirectLong
 echo " DONE" > $redirectShort
 
 
