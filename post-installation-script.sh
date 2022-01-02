@@ -62,7 +62,7 @@ echo "Checking Flatpak presence..." > $redirectShort
 if ! flatpak --version > /dev/null 2> /dev/null
 then
     echo -n "Flatpak is not installed. Starting installation..." > $redirectShort
-    apt-get install flatpak > $redirectLong
+    apt-get -y install flatpak > $redirectLong
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     echo " DONE\nFlatpak is succesfully installed. Now you must restart the computer."
     exit 0
@@ -130,7 +130,14 @@ echo "DONE" > $redirectShort
 
 if [[ ! -d "~/.config/VSCodium" ]]
 then
-    echo "Creating \"~/.config/VSCodium\" folder..." > $redirectShort
+    if [[ ! -d "~/.config" ]]
+    then
+        echo -n "Creating \"~/.config\" folder..." > $redirectShort
+        mkdir ~/.config/VSCodium
+        echo " DONE" > $redirectShort
+    fi
+
+    echo -n "Creating \"~/.config/VSCodium\" folder..." > $redirectShort
     mkdir ~/.config/VSCodium
     echo " DONE" > $redirectShort
 fi
