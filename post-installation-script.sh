@@ -10,6 +10,10 @@ APT="terminator openjdk-11-jdk brave-browser codium thunderbird signal-desktop t
 ## Applications installed by Flatpak
 FLATPAK="com.gitlab.davem.ClamTk cc.arduino.arduinoide org.apache.netbeans org.kicad.KiCad io.freetubeapp.FreeTube com.prusa3d.PrusaSlicer"
 
+## Groups where user should be added (separated by commas)
+
+groups="dialout"
+
 # Script preset
 
 echo "Post-Installation Script\n------------------------"
