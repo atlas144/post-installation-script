@@ -59,7 +59,7 @@ echo " DONE" > $redirectShort
 
 echo "Checking Flatpak presence..." > $redirectShort
 
-if ! flatpak --version > /dev/null
+if ! flatpak --version > /dev/null 2> /dev/null
 then
     echo -n "Flatpak is not installed. Starting installation..." > $redirectShort
     apt-get install flatpak > $redirectLong
