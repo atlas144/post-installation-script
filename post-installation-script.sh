@@ -5,10 +5,10 @@
 # User defined variables
 
 ## Applications installed by APT
-APT="terminator openjdk-11-jdk brave-browser codium thunderbird transmission-gtk libreoffice gimp rhythmbox steam"
+APT="terminator openjdk-11-jdk brave-browser codium thunderbird signal-desktop transmission-gtk libreoffice gimp rhythmbox steam"
 
 ## Applications installed by Flatpak
-FLATPAK="com.gitlab.davem.ClamTk cc.arduino.arduinoide org.apache.netbeans org.kicad.KiCad org.signal.Signal io.freetubeapp.FreeTube com.prusa3d.PrusaSlicer"
+FLATPAK="com.gitlab.davem.ClamTk cc.arduino.arduinoide org.apache.netbeans org.kicad.KiCad io.freetubeapp.FreeTube com.prusa3d.PrusaSlicer"
 
 # Script preset
 
@@ -49,6 +49,14 @@ wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.g
     | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
 echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
     | sudo tee /etc/apt/sources.list.d/vscodium.list > /dev/null
+
+### Signal
+
+wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
+cat signal-desktop-keyring.gpg | tee -a /usr/share/keyrings/signal-desktop-keyring.gpg > redirectLong
+
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+tee -a /etc/apt/sources.list.d/signal-xenial.list > redirectLong
 
 # User programs installation
 
