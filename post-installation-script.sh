@@ -2,6 +2,20 @@
 
 # SPDX-License-Identifier: MIT
 
+# User defined variables
+
+## Applications installed by APT (separated by spaces)
+
+apt="terminator openjdk-13-jdk brave-browser codium thunderbird signal-desktop transmission-gtk libreoffice gimp rhythmbox steam"
+
+## Applications installed by Flatpak (separated by spaces)
+
+flatpak="cc.arduino.arduinoide org.apache.netbeans org.kicad.KiCad io.freetubeapp.FreeTube com.prusa3d.PrusaSlicer"
+
+## Groups where user should be added (separated by commas)
+
+groups="dialout"
+
 # Arguments handling
 
 redirectLong=/dev/null
@@ -23,20 +37,6 @@ while getopts ":h" argument; do
             exit;;
     esac
 done
-
-# User defined variables
-
-## Applications installed by APT (separated by spaces)
-
-apt="terminator openjdk-13-jdk brave-browser codium thunderbird signal-desktop transmission-gtk libreoffice gimp rhythmbox steam"
-
-## Applications installed by Flatpak (separated by spaces)
-
-flatpak="com.gitlab.davem.ClamTk cc.arduino.arduinoide org.apache.netbeans org.kicad.KiCad io.freetubeapp.FreeTube com.prusa3d.PrusaSlicer"
-
-## Groups where user should be added (separated by commas)
-
-groups="dialout"
 
 # Script preset
 
