@@ -64,7 +64,7 @@ then
     echo -n "Flatpak is not installed. Starting installation..." > $redirectShort
     apt-get -y install flatpak > $redirectLong
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    echo " DONE\nFlatpak is succesfully installed. Now you must restart the computer."
+    echo -e " DONE\nFlatpak is succesfully installed. Now you must restart the computer."
     exit 0
 else
     echo "Flatpak is already installed" > $redirectShort
@@ -72,38 +72,44 @@ fi
 
 ### Brave repository setup
 
+echo -n "Adding Brave repository..." > $redirectShort
 wget -qO /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list > $redirectLong
+echo " DONE" > $redirectShort
 
 ### VSCodium repository setup
 
+echo -n "Adding VSCodium repository..." > $redirectShort
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
     | gpg --dearmor \
     | dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
 echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
     | tee /etc/apt/sources.list.d/vscodium.list > $redirectLong
+echo " DONE" > $redirectShort
 
 ### Signal repository setup
 
+echo -n "Adding Signal repository..." > $redirectShort
 wget -qO - https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > /usr/share/keyrings/signal-desktop-keyring.gpg
 
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
 tee -a /etc/apt/sources.list.d/signal-xenial.list > $redirectLong
+echo " DONE" > $redirectShort
 
 
 ## User programs installation
 
 ### APT installation
 
-echo "Starting installation of following programs (by APT): $apt" > $redirectShort
+echo -n "Starting installation of following programs (by APT): $apt..." > $redirectShort
 apt-get update > $redirectLong && apt-get -y install $apt > $redirectLong
-echo "DONE" > $redirectShort
+echo " DONE" > $redirectShort
 
 ### Flatpak installation
 
-echo "Starting installation of following programs (by Flatpak): $flatpak" > $redirectShort
+echo -n "Starting installation of following programs (by Flatpak): $flatpak..." > $redirectShort
 flatpak install -y --noninteractive flathub $flatpak > $redirectLong
-echo "DONE" > $redirectShort
+echo " DONE" > $redirectShort
 
 # Settings
 
@@ -119,9 +125,9 @@ echo " DONE" > $redirectShort
 
 ## Groups
 
-echo "Adding user to following groups: $groups" > $redirectShort
+echo -n "Adding user to following groups: $groups..." > $redirectShort
 usermod -aG $groups $(whoami)
-echo "DONE" > $redirectShort
+echo " DONE" > $redirectShort
 
 ## Applications config
 
