@@ -116,34 +116,34 @@ echo " DONE" > $redirectShort
 ## .bashrc
 
 echo -n "Setting default apps..." > $redirectShort
-echo "export BROWSER=/usr/bin/brave-browser" >> ~/.bashrc
+echo "export BROWSER=/usr/bin/brave-browser" >> "/home/$SUDO_USER/.bashrc"
 echo " DONE" > $redirectShort
 
 echo -n "Setting shell prompt..." > $redirectShort
-echo "export PS1=\"\[\033[38;5;76m\]\[$(tput bold)\]┌─(\[$(tput sgr0)\]\[\033[38;5;255m\]\[$(tput bold)\]\u\[$(tput sgr0)\]\[\033[38;5;76m\]\[$(tput bold)\]@\[$(tput sgr0)\]\[\033[38;5;255m\]\[$(tput bold)\]\H\[$(tput sgr0)\]\[\033[38;5;76m\]\[$(tput bold)\])-[\[$(tput sgr0)\]\[\033[38;5;255m\]\[$(tput bold)\]\w\[$(tput sgr0)\]\[\033[38;5;76m\]\[$(tput bold)\]]\n└──\\$\[$(tput sgr0)\] \"" >> ~/.bashrc
+echo "export PS1=\"\[\033[38;5;76m\]\[$(tput bold)\]┌─(\[$(tput sgr0)\]\[\033[38;5;255m\]\[$(tput bold)\]\u\[$(tput sgr0)\]\[\033[38;5;76m\]\[$(tput bold)\]@\[$(tput sgr0)\]\[\033[38;5;255m\]\[$(tput bold)\]\H\[$(tput sgr0)\]\[\033[38;5;76m\]\[$(tput bold)\])-[\[$(tput sgr0)\]\[\033[38;5;255m\]\[$(tput bold)\]\w\[$(tput sgr0)\]\[\033[38;5;76m\]\[$(tput bold)\]]\n└──\\$\[$(tput sgr0)\] \"" >> "/home/$SUDO_USER/.bashrc"
 echo " DONE" > $redirectShort
 
 ## Groups
 
 echo -n "Adding user to following groups: $groups..." > $redirectShort
-usermod -aG $groups $(whoami)
+usermod -aG $groups $SUDO_USER
 echo " DONE" > $redirectShort
 
 ## Applications config
 
 ### VSCodium
 
-if [[ ! -d "~/.config/VSCodium" ]]
+if [[ ! -d "/home/$SUDO_USER/.config/VSCodium" ]]
 then
-    if [[ ! -d "~/.config" ]]
+    if [[ ! -d "/home/$SUDO_USER/.config" ]]
     then
         echo -n "Creating \"~/.config\" folder..." > $redirectShort
-        mkdir ~/.config/VSCodium
+        mkdir "/home/$SUDO_USER/.config/VSCodium"
         echo " DONE" > $redirectShort
     fi
 
     echo -n "Creating \"~/.config/VSCodium\" folder..." > $redirectShort
-    mkdir ~/.config/VSCodium
+    mkdir "/home/$SUDO_USER/.config/VSCodium"
     echo " DONE" > $redirectShort
 fi
 
@@ -156,5 +156,5 @@ echo "{
     \"controlUrl\": \"\",
     \"recommendationsUrl\": \"\"
   }
-}" > ~/.config/VSCodium/product.json
+}" > "/home/$SUDO_USER/.config/VSCodium/product.json"
 echo " DONE" > $redirectShort
