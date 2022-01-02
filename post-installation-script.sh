@@ -70,3 +70,36 @@ echo "Starting installation of following programs (by Flatpak): $FLATPAK"
 flatpak install -y --noninteractive flathub $FLATPAK > /dev/null
 echo "DONE"
 
+# Settings
+
+## .bashrc
+
+echo -n "Setting default apps..."
+echo "export BROWSER=/usr/bin/brave-browser" >> ~/.bashrc
+echo " DONE"
+
+echo -n "Setting shell prompt..."
+echo "export PS1=\"\[\033[38;5;76m\]\[$(tput bold)\]┌─(\[$(tput sgr0)\]\[\033[38;5;255m\]\[$(tput bold)\]\u\[$(tput sgr0)\]\[\033[38;5;76m\]\[$(tput bold)\]@\[$(tput sgr0)\]\[\033[38;5;255m\]\[$(tput bold)\]\H\[$(tput sgr0)\]\[\033[38;5;76m\]\[$(tput bold)\])-[\[$(tput sgr0)\]\[\033[38;5;255m\]\[$(tput bold)\]\w\[$(tput sgr0)\]\[\033[38;5;76m\]\[$(tput bold)\]]\n└──\\$\[$(tput sgr0)\] \"" >> ~/.bashrc
+echo " DONE"
+
+## Groups
+
+echo "Adding user to following groups: $groups"
+usermod -aG $groups $(whoami)
+echo "DONE"
+
+## Applications config
+
+### VSCodium
+
+echo -n "Creating product.json file..."
+echo "{
+  \"extensionsGallery\": {
+    \"serviceUrl\": \"https://marketplace.visualstudio.com/_apis/public/gallery\",
+    \"cacheUrl\": \"https://vscode.blob.core.windows.net/gallery/index\",
+    \"itemUrl\": \"https://marketplace.visualstudio.com/items\",
+    \"controlUrl\": \"\",
+    \"recommendationsUrl\": \"\"
+  }
+}" > ~/.config/VSCodium/product.json
+echo " DONE"
