@@ -16,20 +16,24 @@ groups="dialout"
 redirectLong=/dev/null
 redirectShort=/dev/stdout
 
-while getopts ":h" argument; do
-    case $argument in
+while getopts ":snv" argument; do
+    case ${argument} in
         s)  # Silent
             redirectLong=/dev/null
-            redirectShort=/dev/null;;
+            redirectShort=/dev/null
+            ;;
         n)  # Normal
             redirectLong=/dev/null
-            redirectShort=/dev/stdout;;
+            redirectShort=/dev/stdout
+            ;;
         v)  # Verbose
             redirectLong=/dev/stdout
-            redirectShort=/dev/stdout;;
+            redirectShort=/dev/stdout
+            ;;
         \?)
             echo "Error: Invalid argument"
-            exit;;
+            exit
+            ;;
     esac
 done
 
