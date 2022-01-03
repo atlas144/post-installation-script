@@ -32,7 +32,7 @@ while getopts ":snv" argument; do
             ;;
         \?)
             echo "Error: Invalid argument"
-            exit
+            exit 1
             ;;
     esac
 done
